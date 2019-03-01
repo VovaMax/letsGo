@@ -6,7 +6,7 @@ type_ = {
     'INTEGER':'INT',
     'WORD':'INT',
     'BOOLEAN':'BOOLEAN',
-    'FLOAT':'FLOAT8',
+    'FLOAT':'NUMERIC',
     'CURRENCY':'DECIMAL',
     'BCD':'BYTEA',
     'FMTBCD':'BYTEA',

@@ -318,6 +318,7 @@ class DBDownloader:
                 detail = IndexDetail()
                 detail.value = attr_dict[attr]
                 index.details.append(detail)
+                print(index.details)
             elif attr == 'kind':
                 index.kind = attr_dict[attr]
             elif attr == 'local':

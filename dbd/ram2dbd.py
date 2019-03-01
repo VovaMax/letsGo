@@ -1,6 +1,6 @@
 import errno            #Этот модуль делает доступными стандартные errno системные символы
 import os               #функции для работы с операционной системой
-import sqlite3          #встроенная библиотека для
+import sqlite3          #встроенная библиотека для работы с sql
 import uuid             #библиотека для генерации id
 from dbd.SQLite_ddl_init import SQL_DBD_Init
 
