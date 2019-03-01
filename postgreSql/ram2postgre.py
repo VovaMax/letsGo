@@ -96,7 +96,6 @@ class DdlPostgre:
             scale = ',{0})'.format(str(scale)) if scale else ")"
             if not precision:
                 scale = ""
-            print(type)
             if type == 'NUMERIC':
                 type = create.format(name, type, precision + scale, self.schema.name)
             elif type == 'CHAR' or type == 'VARCHAR':
@@ -204,16 +203,6 @@ class DdlPostgre:
             if prim.__len__()>=1:
                 self.primary_text += constr
         self.primary_text+= "\n"
-
-    '''
-    f = ''
-        for c in table.constraints:
-            if c.kind.lower()=='foreign':
-                f += """alter table {}."{}"  add {} ({}) references {}.\"{}\";\n""" \
-                    .format(schema.name, table.name, "FOREIGN KEY", c.items, schema.name, c.reference)
-        return f
-    '''
-
 
     def _create_constraints_foreign(self):                          # Создание ограничений
         for table in self.schema.tables:
