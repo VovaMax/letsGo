@@ -275,8 +275,8 @@ class ram2sqlite:
             table_id = self.add_table(table, schema_id)
             for field in table.fields:
                 field_position = list(table.fields).index(field)
-                domain_id = domains_ids[field.domain]
-                self.add_field(table_id, field, field_position, domain_id)
+                domain_name = domains_ids[field.domain]
+                self.add_field(table_id, field, field_position, domain_name)
             fields_ids = self.get_id(self.config.get_fields_id)
             for constraint in table.constraints:
                 constraint_id = self.add_constraint(table_id, constraint)

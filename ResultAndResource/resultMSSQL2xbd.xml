@@ -1,0 +1,191 @@
+<?xml version="1.0" ?>
+  <dbd_schema name="dbo">
+    <custom/>
+    <tables>
+      <table name="Employees">
+        <field name="EmployeeID" domain.char_length="4" domain.precision="10" domain.scale="0" domain.type="INT" props="edit"/>
+        <field name="LastName" domain.char_length="40" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input"/>
+        <field name="FirstName" domain.char_length="20" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input"/>
+        <field name="Title" domain.char_length="60" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="TitleOfCourtesy" domain.char_length="50" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="BirthDate" domain.char_length="8" domain.precision="23" domain.scale="3" domain.type="TIMESTAMP WITHOUT TIME ZONE" props="input, required"/>
+        <field name="HireDate" domain.char_length="8" domain.precision="23" domain.scale="3" domain.type="TIMESTAMP WITHOUT TIME ZONE" props="input, required"/>
+        <field name="Address" domain.char_length="120" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="City" domain.char_length="30" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="Region" domain.char_length="30" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="PostalCode" domain.char_length="20" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="Country" domain.char_length="30" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="HomePhone" domain.char_length="48" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="Extension" domain.char_length="8" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="Photo" domain.char_length="16" domain.precision="0" domain.scale="0" domain.type="BYTEA" props="input, required"/>
+        <field name="Notes" domain.char_length="16" domain.precision="0" domain.scale="0" domain.type="TEXT" props="input, required"/>
+        <field name="ReportsTo" domain.char_length="4" domain.precision="10" domain.scale="0" domain.type="INT" props="input, required"/>
+        <field name="PhotoPath" domain.char_length="510" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <constraint name="PK_Employees" kind="PRIMARY" items="EmployeeID"/>
+        <constraint name="FK_Employees_Employees" kind="FOREIGN" items="ReportsTo" reference="Employees" props="cascading_delete"/>
+        <index name="PK_Employees" items="EmployeeID" props="uniqueness"/>
+        <index name="LastName" items="LastName"/>
+        <index name="PostalCode" items="PostalCode"/>
+      </table>
+      <table name="Categories">
+        <field name="CategoryID" domain.char_length="4" domain.precision="10" domain.scale="0" domain.type="INT" props="edit"/>
+        <field name="CategoryName" domain.char_length="30" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input"/>
+        <field name="Description" domain.char_length="16" domain.precision="0" domain.scale="0" domain.type="TEXT" props="input, required"/>
+        <field name="Picture" domain.char_length="16" domain.precision="0" domain.scale="0" domain.type="BYTEA" props="input, required"/>
+        <constraint name="PK_Categories" kind="PRIMARY" items="CategoryID"/>
+        <index name="PK_Categories" items="CategoryID" props="uniqueness"/>
+        <index name="CategoryName" items="CategoryName"/>
+      </table>
+      <table name="Customers">
+        <field name="CustomerID" domain.char_length="10" domain.precision="0" domain.scale="0" domain.type="CHAR" props="input"/>
+        <field name="CompanyName" domain.char_length="80" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input"/>
+        <field name="ContactName" domain.char_length="60" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="ContactTitle" domain.char_length="60" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="Address" domain.char_length="120" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="City" domain.char_length="30" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="Region" domain.char_length="30" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="PostalCode" domain.char_length="20" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="Country" domain.char_length="30" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="Phone" domain.char_length="48" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="Fax" domain.char_length="48" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <constraint name="PK_Customers" kind="PRIMARY" items="CustomerID"/>
+        <index name="PK_Customers" items="CustomerID" props="uniqueness"/>
+        <index name="City" items="City"/>
+        <index name="CompanyName" items="CompanyName"/>
+        <index name="PostalCode" items="PostalCode"/>
+        <index name="Region" items="Region"/>
+      </table>
+      <table name="Shippers">
+        <field name="ShipperID" domain.char_length="4" domain.precision="10" domain.scale="0" domain.type="INT" props="edit"/>
+        <field name="CompanyName" domain.char_length="80" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input"/>
+        <field name="Phone" domain.char_length="48" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <constraint name="PK_Shippers" kind="PRIMARY" items="ShipperID"/>
+        <index name="PK_Shippers" items="ShipperID" props="uniqueness"/>
+      </table>
+      <table name="Suppliers">
+        <field name="SupplierID" domain.char_length="4" domain.precision="10" domain.scale="0" domain.type="INT" props="edit"/>
+        <field name="CompanyName" domain.char_length="80" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input"/>
+        <field name="ContactName" domain.char_length="60" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="ContactTitle" domain.char_length="60" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="Address" domain.char_length="120" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="City" domain.char_length="30" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="Region" domain.char_length="30" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="PostalCode" domain.char_length="20" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="Country" domain.char_length="30" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="Phone" domain.char_length="48" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="Fax" domain.char_length="48" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="HomePage" domain.char_length="16" domain.precision="0" domain.scale="0" domain.type="TEXT" props="input, required"/>
+        <constraint name="PK_Suppliers" kind="PRIMARY" items="SupplierID"/>
+        <index name="PK_Suppliers" items="SupplierID" props="uniqueness"/>
+        <index name="CompanyName" items="CompanyName"/>
+        <index name="PostalCode" items="PostalCode"/>
+      </table>
+      <table name="Orders">
+        <field name="OrderID" domain.char_length="4" domain.precision="10" domain.scale="0" domain.type="INT" props="edit"/>
+        <field name="CustomerID" domain.char_length="10" domain.precision="0" domain.scale="0" domain.type="CHAR" props="input, required"/>
+        <field name="EmployeeID" domain.char_length="4" domain.precision="10" domain.scale="0" domain.type="INT" props="input, required"/>
+        <field name="OrderDate" domain.char_length="8" domain.precision="23" domain.scale="3" domain.type="TIMESTAMP WITHOUT TIME ZONE" props="input, required"/>
+        <field name="RequiredDate" domain.char_length="8" domain.precision="23" domain.scale="3" domain.type="TIMESTAMP WITHOUT TIME ZONE" props="input, required"/>
+        <field name="ShippedDate" domain.char_length="8" domain.precision="23" domain.scale="3" domain.type="TIMESTAMP WITHOUT TIME ZONE" props="input, required"/>
+        <field name="ShipVia" domain.char_length="4" domain.precision="10" domain.scale="0" domain.type="INT" props="input, required"/>
+        <field name="Freight" domain.char_length="8" domain.precision="19" domain.scale="4" domain.type="MONEY" props="input, required"/>
+        <field name="ShipName" domain.char_length="80" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="ShipAddress" domain.char_length="120" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="ShipCity" domain.char_length="30" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="ShipRegion" domain.char_length="30" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="ShipPostalCode" domain.char_length="20" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="ShipCountry" domain.char_length="30" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <constraint name="PK_Orders" kind="PRIMARY" items="OrderID"/>
+        <constraint name="FK_Orders_Customers" kind="FOREIGN" items="CustomerID" reference="Customers" props="cascading_delete"/>
+        <constraint name="FK_Orders_Employees" kind="FOREIGN" items="EmployeeID" reference="Employees" props="cascading_delete"/>
+        <constraint name="FK_Orders_Shippers" kind="FOREIGN" items="ShipVia" reference="Shippers" props="cascading_delete"/>
+        <index name="PK_Orders" items="OrderID" props="uniqueness"/>
+        <index name="CustomerID" items="CustomerID"/>
+        <index name="CustomersOrders" items="CustomerID"/>
+        <index name="EmployeeID" items="EmployeeID"/>
+        <index name="EmployeesOrders" items="EmployeeID"/>
+        <index name="OrderDate" items="OrderDate"/>
+        <index name="ShippedDate" items="ShippedDate"/>
+        <index name="ShippersOrders" items="ShipVia"/>
+        <index name="ShipPostalCode" items="ShipPostalCode"/>
+      </table>
+      <table name="Products">
+        <field name="ProductID" domain.char_length="4" domain.precision="10" domain.scale="0" domain.type="INT" props="edit"/>
+        <field name="ProductName" domain.char_length="80" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input"/>
+        <field name="SupplierID" domain.char_length="4" domain.precision="10" domain.scale="0" domain.type="INT" props="input, required"/>
+        <field name="CategoryID" domain.char_length="4" domain.precision="10" domain.scale="0" domain.type="INT" props="input, required"/>
+        <field name="QuantityPerUnit" domain.char_length="40" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input, required"/>
+        <field name="UnitPrice" domain.char_length="8" domain.precision="19" domain.scale="4" domain.type="MONEY" props="input, required"/>
+        <field name="UnitsInStock" domain.char_length="2" domain.precision="5" domain.scale="0" domain.type="SMALLINT" props="input, required"/>
+        <field name="UnitsOnOrder" domain.char_length="2" domain.precision="5" domain.scale="0" domain.type="SMALLINT" props="input, required"/>
+        <field name="ReorderLevel" domain.char_length="2" domain.precision="5" domain.scale="0" domain.type="SMALLINT" props="input, required"/>
+        <field name="Discontinued" domain.char_length="1" domain.precision="1" domain.scale="0" domain.type="SMALLINT" props="input"/>
+        <constraint name="PK_Products" kind="PRIMARY" items="ProductID"/>
+        <constraint name="FK_Products_Suppliers" kind="FOREIGN" items="SupplierID" reference="Suppliers" props="cascading_delete"/>
+        <constraint name="FK_Products_Categories" kind="FOREIGN" items="CategoryID" reference="Categories" props="cascading_delete"/>
+        <index name="PK_Products" items="ProductID" props="uniqueness"/>
+        <index name="CategoriesProducts" items="CategoryID"/>
+        <index name="CategoryID" items="CategoryID"/>
+        <index name="ProductName" items="ProductName"/>
+        <index name="SupplierID" items="SupplierID"/>
+        <index name="SuppliersProducts" items="SupplierID"/>
+      </table>
+      <table name="Order Details">
+        <field name="OrderID" domain.char_length="4" domain.precision="10" domain.scale="0" domain.type="INT" props="input"/>
+        <field name="ProductID" domain.char_length="4" domain.precision="10" domain.scale="0" domain.type="INT" props="input"/>
+        <field name="UnitPrice" domain.char_length="8" domain.precision="19" domain.scale="4" domain.type="MONEY" props="input"/>
+        <field name="Quantity" domain.char_length="2" domain.precision="5" domain.scale="0" domain.type="SMALLINT" props="input"/>
+        <field name="Discount" domain.char_length="4" domain.precision="24" domain.scale="0" domain.type="REAL" props="input"/>
+        <constraint name="PK_Order_Details" kind="PRIMARY" items="OrderID"/>
+        <constraint name="PK_Order_Details" kind="PRIMARY" items="ProductID"/>
+        <constraint name="FK_Order_Details_Orders" kind="FOREIGN" items="OrderID" reference="Orders" props="cascading_delete"/>
+        <constraint name="FK_Order_Details_Products" kind="FOREIGN" items="ProductID" reference="Products" props="cascading_delete"/>
+        <index name="PK_Order_Details" items="OrderID" props="uniqueness"/>
+        <index name="PK_Order_Details" items="ProductID" props="uniqueness"/>
+        <index name="OrderID" items="OrderID"/>
+        <index name="OrdersOrder_Details" items="OrderID"/>
+        <index name="ProductID" items="ProductID"/>
+        <index name="ProductsOrder_Details" items="ProductID"/>
+      </table>
+      <table name="CustomerCustomerDemo">
+        <field name="CustomerID" domain.char_length="10" domain.precision="0" domain.scale="0" domain.type="CHAR" props="input"/>
+        <field name="CustomerTypeID" domain.char_length="20" domain.precision="0" domain.scale="0" domain.type="CHAR" props="input"/>
+        <constraint name="PK_CustomerCustomerDemo" kind="PRIMARY" items="CustomerID"/>
+        <constraint name="PK_CustomerCustomerDemo" kind="PRIMARY" items="CustomerTypeID"/>
+        <constraint name="FK_CustomerCustomerDemo_Customers" kind="FOREIGN" items="CustomerID" reference="Customers" props="cascading_delete"/>
+        <constraint name="FK_CustomerCustomerDemo" kind="FOREIGN" items="CustomerTypeID" reference="CustomerDemographics" props="cascading_delete"/>
+        <index name="PK_CustomerCustomerDemo" items="CustomerID" props="uniqueness"/>
+        <index name="PK_CustomerCustomerDemo" items="CustomerTypeID" props="uniqueness"/>
+      </table>
+      <table name="CustomerDemographics">
+        <field name="CustomerTypeID" domain.char_length="20" domain.precision="0" domain.scale="0" domain.type="CHAR" props="input"/>
+        <field name="CustomerDesc" domain.char_length="16" domain.precision="0" domain.scale="0" domain.type="TEXT" props="input, required"/>
+        <constraint name="PK_CustomerDemographics" kind="PRIMARY" items="CustomerTypeID"/>
+        <index name="PK_CustomerDemographics" items="CustomerTypeID" props="uniqueness"/>
+      </table>
+      <table name="Region">
+        <field name="RegionID" domain.char_length="4" domain.precision="10" domain.scale="0" domain.type="INT" props="input"/>
+        <field name="RegionDescription" domain.char_length="100" domain.precision="0" domain.scale="0" domain.type="CHAR" props="input"/>
+        <constraint name="PK_Region" kind="PRIMARY" items="RegionID"/>
+        <index name="PK_Region" items="RegionID" props="uniqueness"/>
+      </table>
+      <table name="Territories">
+        <field name="TerritoryID" domain.char_length="40" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input"/>
+        <field name="TerritoryDescription" domain.char_length="100" domain.precision="0" domain.scale="0" domain.type="CHAR" props="input"/>
+        <field name="RegionID" domain.char_length="4" domain.precision="10" domain.scale="0" domain.type="INT" props="input"/>
+        <constraint name="PK_Territories" kind="PRIMARY" items="TerritoryID"/>
+        <constraint name="FK_Territories_Region" kind="FOREIGN" items="RegionID" reference="Region" props="cascading_delete"/>
+        <index name="PK_Territories" items="TerritoryID" props="uniqueness"/>
+      </table>
+      <table name="EmployeeTerritories">
+        <field name="EmployeeID" domain.char_length="4" domain.precision="10" domain.scale="0" domain.type="INT" props="input"/>
+        <field name="TerritoryID" domain.char_length="40" domain.precision="0" domain.scale="0" domain.type="VARCHAR" props="input"/>
+        <constraint name="PK_EmployeeTerritories" kind="PRIMARY" items="EmployeeID"/>
+        <constraint name="PK_EmployeeTerritories" kind="PRIMARY" items="TerritoryID"/>
+        <constraint name="FK_EmployeeTerritories_Employees" kind="FOREIGN" items="EmployeeID" reference="Employees" props="cascading_delete"/>
+        <constraint name="FK_EmployeeTerritories_Territories" kind="FOREIGN" items="TerritoryID" reference="Territories" props="cascading_delete"/>
+        <index name="PK_EmployeeTerritories" items="EmployeeID" props="uniqueness"/>
+        <index name="PK_EmployeeTerritories" items="TerritoryID" props="uniqueness"/>
+      </table>
+    </tables>
+  </dbd_schema>
